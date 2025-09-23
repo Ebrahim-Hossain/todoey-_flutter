@@ -1,47 +1,50 @@
 import 'package:flutter/material.dart';
 
-class TaskListTile extends StatefulWidget {
-  const TaskListTile({super.key});
+class TaskListTile extends StatelessWidget {
+  const TaskListTile({
+    super.key,
+    required this.isCheck,
+    required this.taskText,
+    required this.checkBoxState,
+  });
+  final bool isCheck;
+  final String taskText;
+  final Function(bool?) checkBoxState;
 
-  @override
-  State<TaskListTile> createState() => _TaskListTileState();
-}
+  // (checkBoxState) {
+  // setState(() {
+  // isCheck = checkBoxState!;
+  // });
+  // }
 
-class _TaskListTileState extends State<TaskListTile> {
-  bool isCheck = false;
   @override
   Widget build(BuildContext context) {
+    // TODO: implement build
     return ListTile(
-      contentPadding: EdgeInsets.only(top: 30),
-      title: Text('This is task.', style: TextStyle(
-        fontSize: 20,
-        decoration: isCheck ? TextDecoration.lineThrough  : null,)
+      contentPadding: EdgeInsets.only(top: 10),
+      title: Text(
+        taskText,
+        style: TextStyle(
+          fontSize: 20,
+          decoration: isCheck ? TextDecoration.lineThrough : null,
+          decorationThickness: 2,
+        ),
       ),
-      trailing: CheckBoxes(
-        isChecked: isCheck,
-        changeCheckbox: (newValue) {
-          setState(() {
-            isCheck = newValue;
-          });
-
-        },
-      ),
+      trailing: Checkbox(value: isCheck, onChanged: checkBoxState),
     );
   }
 }
 
 class CheckBoxes extends StatelessWidget {
-  const CheckBoxes({super.key,required this.isChecked, required this.changeCheckbox});
+  const CheckBoxes({
+    super.key,
+    required this.isChecked,
+    required this.changeCheckbox,
+  });
   final bool? isChecked;
-  final Function changeCheckbox;
+  final Function(bool?) changeCheckbox;
   @override
   Widget build(BuildContext context) {
-    return Checkbox(
-      value: isChecked,
-      onChanged: (newValue) {
-        changeCheckbox(newValue);
-        }
-    );
+    return Checkbox(value: isChecked, onChanged: changeCheckbox);
   }
 }
-
