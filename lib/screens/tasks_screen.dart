@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey_flutter/main.dart';
 import '../model/task.dart';
+import '../model/task_data.dart';
 import '../widgets/task_view.dart';
 import 'add_task_screen.dart';
 
@@ -11,11 +14,6 @@ class TasksScreen extends StatefulWidget {
 }
 
 class _TasksScreenState extends State<TasksScreen> {
-  List<Task> task = [
-    Task(name: "Buy girls"),
-    Task(name: "Buy beers"),
-    Task(name: "Taslim will buy me 3k coins"),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +23,7 @@ class _TasksScreenState extends State<TasksScreen> {
         onPressed: () {
           showModalBottomSheet(
             context: context,
-            builder: (context) => AddTaskScreen(addText:
-                (newText) {
-              setState(() {
-                task.add(Task(name: newText));
-              });
-            },),
+            builder: (context) => AddTaskScreen(),
           );
         },
         child: Icon(Icons.add, color: Colors.white, size: 35),
@@ -64,7 +57,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   ),
                 ),
                 Text(
-                  '${task.length} Tasks',
+                  '${Provider.of<TaskData>(context).task.length} Tasks',
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.white,
@@ -84,7 +77,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   topRight: Radius.circular(30),
                 ),
               ),
-              child: TaskView(task: task),
+              child: TaskView(),
             ),
           ),
         ],
