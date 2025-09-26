@@ -22,7 +22,7 @@ class _TaskViewState extends State<TaskView> {
           itemBuilder: (context, number) {
             log("$number");
             return Padding(
-              padding: EdgeInsetsGeometry.only(bottom: taskData.task.length - 1 == number?200: 0),
+              padding: EdgeInsetsGeometry.only(bottom: taskData.task.length - 1 == number ? 200 : 0),
               child: TaskListTile(
                 isCheck: taskData.task[number].isDone,
                 taskText: taskData.task[number].name,
@@ -37,7 +37,6 @@ class _TaskViewState extends State<TaskView> {
           itemCount: taskData.task.length,
         );
       },
-
     );
   }
 }
