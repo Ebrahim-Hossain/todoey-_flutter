@@ -24,6 +24,9 @@ class TaskView extends StatelessWidget {
                 checkBoxState: (bool? p1) {
                   taskData.taskBoxChange(tasks);
                 },
+                removeTask: () {
+
+                },
               ),
             );
           },

@@ -5,11 +5,12 @@ class TaskListTile extends StatelessWidget {
     super.key,
     required this.isCheck,
     required this.taskText,
-    required this.checkBoxState,
+    required this.checkBoxState, required this.removeTask,
   });
   final bool isCheck;
   final String taskText;
   final Function(bool?) checkBoxState;
+  final Function() removeTask;
 
   // (checkBoxState) {
   // setState(() {
@@ -21,6 +22,7 @@ class TaskListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return ListTile(
+      onLongPress: removeTask,
       contentPadding: EdgeInsets.only(top: 10),
       title: Text(
         taskText,
