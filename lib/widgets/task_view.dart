@@ -25,7 +25,7 @@ class TaskView extends StatelessWidget {
                   taskData.taskBoxChange(tasks);
                 },
                 removeTask: () {
-
+                  taskData.removeTaskData(tasks);
                 },
               ),
             );
