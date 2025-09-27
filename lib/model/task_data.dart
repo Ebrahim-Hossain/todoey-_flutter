@@ -20,4 +20,10 @@ class TaskData extends ChangeNotifier {
     _task.add(Task(name: newValue));
     notifyListeners();
   }
+
+  void taskBoxChange (Task task) {
+    task.changeState();
+    notifyListeners();
+  }
+
 }
